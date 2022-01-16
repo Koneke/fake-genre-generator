@@ -58,7 +58,7 @@ Modifier.UtilityModifiers.Add(
     "drop-s",
     new Modifier(ModifierType.Misc, n => new PartialApplication(
         n.Name.Substring(0, n.Name.Length - 1),
-        n.Rules.Except(new [] { GenreRule.DropsS })
+        n.Rules.Except(new[] { GenreRule.DropsS })
     )));
 
 var genres = new List<Genre>
@@ -126,14 +126,13 @@ string Generate(
     var result = pickedModifiers
         .Take(2)
         .OrderBy(m => m.Type)
-        .Aggregate((INode) genre, (s, m) => m.Apply(s));
+        .Aggregate((INode)genre, (s, m) => m.Apply(s));
     return result.Name;
 }
 
 for (var i = 0; i < 20; i++)
 {
-    // var root = genres.ElementAt(random.Next(0, genres.Count()));
-    var root = genres.Find(g => g.Name == "breaks");
+    var root = genres.ElementAt(random.Next(0, genres.Count()));
     Console.WriteLine(Generate(root, modifiers, random));
 }
 
@@ -177,7 +176,7 @@ public enum ModifierType
 
 public class Modifier
 {
-    public static Dictionary<string, Modifier> UtilityModifiers = new ();
+    public static Dictionary<string, Modifier> UtilityModifiers = new();
 
     public ModifierType Type { get; }
     public UniqueGroup? Group { get; }
